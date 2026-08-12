@@ -1,0 +1,38 @@
+{
+  "name": "bmplus-general-services",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Arabic (RTL) service-office platform for BM Plus General Services — public request intake, blog CMS, and staff admin panel. Express + MySQL backend, React frontend, fully self-hosted.",
+  "author": "Abd AlRahman Alaa Eldeen",
+  "license": "UNLICENSED",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "start": "node server.js",
+    "install:all": "npm install && npm --prefix bmplus-react install",
+    "setup": "npm run install:all",
+    "test:watch": "vitest"
+  },
+  "keywords": [],
+  "dependencies": {
+    "compression": "^1.8.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.5.2",
+    "helmet": "^8.2.0",
+    "multer": "^2.2.0",
+    "mysql2": "^3.11.3",
+    "nodemailer": "^9.0.5"
+  },
+  "optionalDependencies": {
+    "puppeteer-core": "^25.1.0"
+  },
+  "devDependencies": {
+    "supertest": "^7.2.2",
+    "vitest": "^3.2.7"
+  }
+}

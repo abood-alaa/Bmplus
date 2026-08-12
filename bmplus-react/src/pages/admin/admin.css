@@ -1,0 +1,46 @@
+/*
+ * admin.css — the ONLY non-inline styling in the admin panel.
+ *
+ * Everything else in src/pages/admin/ is inline `style={}` objects (see
+ * adminStyles.js), which is a deliberate pre-existing convention in this
+ * codebase. This file exists only because inline styles cannot express two
+ * things React needs here: pseudo-classes (:focus-visible) and @keyframes.
+ * Scoped under .admin-page so it can never leak onto the public site even
+ * though Vite doesn't currently code-split this bundle by route.
+ *
+ * Previously S.input/S.textarea set `outline: 'none'` inline with no
+ * replacement, which made focus actively invisible (worse than doing
+ * nothing) on every text field — fixed by removing that inline override
+ * (see adminStyles.js) and supplying a real, visible focus ring here.
+ */
+
+.admin-page *:focus-visible {
+  outline: 2px solid #FE9070;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Screen-reader-only utility — visually hidden but still announced. Used for
+   the login lockout countdown's polite live-region text (the visible mm:ss
+   counter updates every second, which would spam a live region if it were
+   the thing wired to aria-live — see LoginScreen.jsx). */
+.admin-page .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes admin-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes admin-toast-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

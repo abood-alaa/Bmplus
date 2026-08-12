@@ -1,0 +1,73 @@
+# robots.txt — بيت المقدس للخدمات العامة / Bayt Al-Maqdis General Services
+# Served from https://gs.bmexpress.co/robots.txt
+# Lives in bmplus-react/public/ — Vite copies this directory into dist/ verbatim.
+
+# ── Conventional search crawlers ────────────────────────────────────────────
+User-agent: *
+Allow: /
+# Staff-only control panel — no public content, nothing to index.
+Disallow: /admin
+# Uploaded client identity documents. These are real ID scans on permanent,
+# unauthenticated URLs; they must never appear in a search index.
+Disallow: /uploads/
+
+# ── AI / answer-engine crawlers ─────────────────────────────────────────────
+# This section is an explicit business decision, currently set to ALLOW so the
+# office's services and blog can be found and cited by AI assistants.
+#
+# To reverse it, change `Allow: /` to `Disallow: /` under the agents below.
+# Note that DELETING this section does not block them — an absent robots.txt
+# rule means "allowed" by default, which is what the site had before.
+#
+#   GPTBot          — OpenAI, training + ChatGPT browsing
+#   ChatGPT-User    — OpenAI, live user-initiated fetches
+#   OAI-SearchBot   — OpenAI, search index
+#   ClaudeBot       — Anthropic
+#   PerplexityBot   — Perplexity
+#   Google-Extended — Google Gemini / AI Overviews (separate from Googlebot)
+#   CCBot           — Common Crawl (feeds many downstream models)
+#   Applebot-Extended — Apple Intelligence
+
+User-agent: GPTBot
+Allow: /
+Disallow: /admin
+Disallow: /uploads/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin
+Disallow: /uploads/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin
+Disallow: /uploads/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin
+Disallow: /uploads/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin
+Disallow: /uploads/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin
+Disallow: /uploads/
+
+User-agent: CCBot
+Allow: /
+Disallow: /admin
+Disallow: /uploads/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /admin
+Disallow: /uploads/
+
+# Generated dynamically by server.js so newly published blog articles appear
+# without a redeploy.
+Sitemap: https://gs.bmexpress.co/sitemap.xml

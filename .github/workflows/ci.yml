@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test & build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # No package-lock caching key juggling: this repo has two independent
+      # lockfiles (root = Express API, bmplus-react = the SPA).
+      - name: Install API dependencies
+        run: npm ci
+
+      - name: Install frontend dependencies
+        run: npm ci --prefix bmplus-react
+
+      # The suite injects a stub database (see test/helpers/app.js), so no MySQL
+      # service container is needed here.
+      - name: Run tests
+        run: npm test
+
+      # dist/ is committed and served directly in production, so a build that
+      # fails in CI means a deploy that ships stale assets.
+      - name: Build frontend
+        run: npm run build --prefix bmplus-react
+
+      # Guards the two mistakes that have actually happened on this repo:
+      # committing secrets, and committing client documents.
+      - name: Check for committed secrets or uploaded documents
+        run: |
+          if git ls-files | grep -E '^data/uploads/.*\.(jpg|jpeg|png|pdf)$'; then
+            echo "::error::Client documents must never be committed."
+            exit 1
+          fi
+          if git ls-files | grep -E '(^|/)\.env$'; then
+            echo "::error::.env must never be committed."
+            exit 1
+          fi
+          echo "OK — no uploaded documents or .env files are tracked."

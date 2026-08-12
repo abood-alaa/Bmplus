@@ -1,0 +1,32 @@
+node_modules/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Runtime data
+data/uploads/*
+!data/uploads/.gitkeep
+data/*.db
+data/*.db-shm
+data/*.db-wal
+tmp/
+
+# Logs
+*.log
+boot-error.log
+passenger.log
+
+# Stale deploy artifacts
+*-cpanel.zip
+
+# Dead Supabase tooling — project migrated to MySQL
+bmplus-react/supabase/
+
+# Claude agent working memory — internal notes, kept local.
+# .claude/agents/ (the team definitions) IS tracked; only the accumulated
+# per-project memory is excluded, since it records past incidents, internal
+# review findings, and infrastructure details that don't belong in a public repo.
+.claude/agent-memory/
+**/.claude/agent-memory/
