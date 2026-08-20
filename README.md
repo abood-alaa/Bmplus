@@ -9,7 +9,16 @@ staff admin panel for working the queue.
 
 ![The public homepage — hero, service list, and the three-step explanation of how a request is handled](docs/screenshots/homepage.png)
 
-<!-- Still to add: docs/screenshots/admin-dashboard.png and docs/screenshots/request-form.png -->
+The request form, with the service picker open. Services are stored in the database
+and edited from the admin panel, so the list here is data rather than markup — each
+entry can carry its own extra fields, which appear once it is selected.
+
+![The public request form with the service picker expanded, listing the available services](docs/screenshots/request-form.png)
+
+The staff dashboard: order counts by status, blog articles split by published and
+draft, and how many services are currently enabled.
+
+![The admin dashboard showing order, article, and service counts](docs/screenshots/admin-dashboard.png)
 
 ---
 
