@@ -460,12 +460,17 @@ function OrderDetailBody({ detail, token, onUpdated }) {
         </div>
       )}
 
+      {/* Filenames wrap rather than truncate: staff identify a document by its name,
+          and ellipsis truncation in this RTL block clipped the *start* of Latin
+          filenames — "novatrix-ad-square-logo.jpg" rendered as "uare-logo.jpg…",
+          hiding the identifying half. <bdi> isolates the filename's direction so a
+          Latin name reads correctly beside the Arabic label. */}
       {detail.files?.length > 0 && (
         <div style={{ marginTop: 12 }}>
           <div style={{ color: '#94a3b8', fontSize: '0.8rem', marginBottom: 6, fontWeight: 700 }}>الملفات:</div>
           {detail.files.map((f) => (
-            <a key={f.id} href={`/uploads/${f.file_path}`} target="_blank" rel="noreferrer" style={{ display: 'block', color: '#60a5fa', fontSize: '0.82rem', marginBottom: 4, textDecoration: 'none', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-              📎 {f.label} — {f.file_name}
+            <a key={f.id} href={`/uploads/${f.file_path}`} target="_blank" rel="noreferrer" style={{ display: 'block', color: '#60a5fa', fontSize: '0.82rem', marginBottom: 4, textDecoration: 'none', overflowWrap: 'anywhere' }}>
+              📎 {f.label} — <bdi>{f.file_name}</bdi>
             </a>
           ))}
         </div>

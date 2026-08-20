@@ -7,7 +7,9 @@ request; office staff pick it up, price it, process it, and return the finished 
 One codebase serves three surfaces: the public request-intake portal, a blog, and a
 staff admin panel for working the queue.
 
-<!-- Screenshots go here once captured. -->
+![The public homepage — hero, service list, and the three-step explanation of how a request is handled](docs/screenshots/homepage.png)
+
+<!-- Still to add: docs/screenshots/admin-dashboard.png and docs/screenshots/request-form.png -->
 
 ---
 
