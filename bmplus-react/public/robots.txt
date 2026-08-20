@@ -7,8 +7,6 @@ User-agent: *
 Allow: /
 # Staff-only control panel — no public content, nothing to index.
 Disallow: /admin
-# Uploaded client identity documents. These are real ID scans on permanent,
-# unauthenticated URLs; they must never appear in a search index.
 Disallow: /uploads/
 
 # ── AI / answer-engine crawlers ─────────────────────────────────────────────
